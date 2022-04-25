@@ -4,8 +4,44 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        
+        <script src="script.js" defer></script>
     </head>
     <body>
-        
+        <div id="header-wrapper">
+            <h1>Make Money</h1>
+        </div>
+        <div id="tabs-wrapper">
+            <button class="tab selected">Money</button>
+            <button class="tab">Upgrades</button>
+        </div>
+        <div id="game-wrapper">
+            <div id="income-wrapper">
+                <p id="income">Income $<span id="income">1</span></p>
+            </div>
+            <div id="total-wrapper">
+                <p id="total-display"><span id="total" class="green bold">$0</span></p>
+            </div>
+            <div id="remark-wrapper">
+                <i id="witty-remark">You broke.</i>
+            </div>
+            <div id="item-wrapper">
+                <i id="item-desc"></i>
+                <button id="item">Buy</button>
+            </div>
+            <div id="click-wrapper">
+                <button id="click"><span class="green bold">$</span></button>
+            </div>
+            <div id="bonus-wrapper">
+                <p>Bonus Clicks</p>
+                <span><span id="bonus">0</span> (+<span id="bonus-clicks">0</span> / click)</span>
+                <button id="use-bonus">Use</button>
+            </div>
+        </div>
     </body>
 </html>
