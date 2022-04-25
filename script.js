@@ -1,7 +1,8 @@
-let money = 0;
-let income = 1;
+// var declarations
+var money = 0;
+var income = 1;
 
-let purchase_list = [
+var purchase_list = [
     {object:'Water Bottle', price:20, income:1},
     {object:'Backpack', price:100, income:1},
     {object:'Cart', price:200, income:1},
@@ -39,17 +40,40 @@ make.addEventListener('click', function() {
     }
 });
 
+// purchase item
 const item_purchase = document.getElementById('item');
 item_purchase.addEventListener('click', function() {
     income += purchase_list[0].income;
-    income_display.innerHTML = '$' + income;
+    income_display.innerHTML = 'Income $' + income;
 
     money -= purchase_list[0].price;
-    total.innerHTML = '$' + money; 
+    total.innerHTML = '$' + money;
+
+    purchase_list.shift();
 
     if (money < purchase_list[0].price) {
         item_section.style.display = 'none';
     }
+});
 
-    purchase_list.shift();
+// pages HTML DOM declaration
+const money_tab = document.getElementById('money_tab');
+const money_document = document.getElementById('game-wrapper');
+const upgrades_tab = document.getElementById('upgrades_tab');
+const upgrades_document = document.getElementById('upgrades-wrapper');
+
+// money page
+money_tab.addEventListener('click', function() {
+    money_document.style.display = 'flex';
+    upgrades_document.style.display = 'none';
+    upgrades_tab.className = 'tab';
+    money_tab.className = 'tab selected';
+});
+
+// upgrades page
+upgrades_tab.addEventListener('click', function() {
+    upgrades_document.style.display = 'flex';
+    money_document.style.display = 'none';
+    upgrades_tab.className = 'tab selected';
+    money_tab.className = 'tab';
 });
