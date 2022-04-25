@@ -143,3 +143,30 @@ button.tab:hover {
 #item:focus {
     outline:none;
 }
+
+/* Upgrades styles */
+#upgrades-wrapper {
+    display: none;
+    justify-content: center;
+    width:100%;
+    flex-direction: column;
+}
+#boost-wrapper, #bonus-clicks-wrapper {
+    width: 100%;
+    margin-top:30px;
+    display: flex;
+    justify-content: center;
+}
+#boost, #bonus-purchase {
+    width:200px;
+    height:50px;
+    border-radius: 25px;
+    border:none;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(247, 247, 247);
+    transition: 0.3s;
+}
+#boost:hover, #bonus-purchase:hover {
+    cursor: pointer;
+    background-color: rgb(238, 238, 238);
+}
