@@ -21,6 +21,15 @@ span.bold {
     justify-content: center;
     align-items: center;
 }
+#version {
+    position: absolute;
+    color: white;
+    margin:5px;
+    font-size: 0.8rem;
+}
+#version> p {
+    margin:0px;
+}
 
 /* Tab styles */
 #tabs-wrapper {
