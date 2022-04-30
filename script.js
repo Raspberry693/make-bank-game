@@ -2,9 +2,9 @@
 var money = 0;
 var income = 1;
 
-var boost_cost = 100000;
+var boost_cost = 10000;
 
-var bonus_cost = 1000;
+var bonus_cost = 100;
 var bonus_clicks = 0;
 var total_bonus = 0;
 
@@ -22,7 +22,8 @@ var purchase_list = [
     {object:'Mansion', price:2000000, income:30},
     {object:'Trump Tower', price:300000000, income:50},
     {object:'Bank of America', price:449100000000, income:10},
-    {object:'United States', price:225000000000000, income:200}
+    {object:'United States', price:225000000000000, income:200},
+    {object:'Earth', price:5000000000000000, income:200000}
 ];
 
 // HTML DOM declaration
@@ -102,7 +103,7 @@ boost.addEventListener('click', function() {
 // purchase bonus clicks
 bonus.addEventListener('click', function() {
     money -= bonus_cost;
-    bonus_cost *= 2;
+    bonus_cost *= 3;
     bonus_clicks += 0.1;
 });
 
@@ -119,7 +120,7 @@ var tick = setInterval(function() {
         bonus.disabled = false;
     }
 
-    game_bonus_add.innerHTML = bonus_clicks;
+    game_bonus_add.innerHTML = bonus_clicks.toFixed(1);
     total.innerHTML = '$' + Math.floor(money);
     income_display.innerHTML = 'Income $' + Math.floor(income);
 
