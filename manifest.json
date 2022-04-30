@@ -1,7 +1,7 @@
 {
     "name":"Clicker Game",
     "description":"A facelift of 'Make Money'",
-    "version":"0.1.7",
+    "version":"0.1.8",
     "actions": {
         "popup":"index.html"
     },

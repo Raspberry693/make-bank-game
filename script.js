@@ -158,7 +158,7 @@ bonus.addEventListener('click', function() {
 auto.addEventListener('click', function() {
     money -= auto_cost;
     auto_cost *= 3;
-    auto_clicks += 5;
+    auto_clicks += 2.5;
     auto_add.innerHTML = auto_clicks.toFixed(1);
 });
 
@@ -182,7 +182,7 @@ var tick = setInterval(function() {
 
     game_bonus_add.innerHTML = bonus_clicks.toFixed(1);
     if (powerup == 'auto') {
-        money += auto_clicks / 60;
+        money += income * auto_clicks / 60;
     }
     total.innerHTML = '$' + Math.floor(money);
     income_display.innerHTML = 'Income $' + Math.floor(income);
