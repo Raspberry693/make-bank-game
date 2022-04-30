@@ -8,6 +8,8 @@ var bonus_cost = 100;
 var bonus_clicks = 0;
 var total_bonus = 0;
 
+var powerup = 'bonus';
+
 var purchase_list = [
     {object:'Water Bottle', price:20, income:1},
     {object:'Backpack', price:100, income:1},
@@ -33,10 +35,17 @@ const help_close = document.getElementById('help-close');
 const help = document.getElementById('help-wrapper');
 const help_open = document.getElementById('help-button');
 
-const money_tab = document.getElementById('money_tab');
+const money_tab = document.getElementById('money-tab');
 const money_document = document.getElementById('game-wrapper');
-const upgrades_tab = document.getElementById('upgrades_tab');
+const upgrades_tab = document.getElementById('upgrades-tab');
 const upgrades_document = document.getElementById('upgrades-wrapper');
+
+const bonus_tab = document.getElementById('bonus-tab');
+const bonus_document = document.getElementById('bonus-wrapper');
+const auto_tab = document.getElementById('auto-tab');
+const auto_document = document.getElementById('auto-wrapper');
+const bonus_shadow = document.getElementById('shadow1');
+const auto_shadow = document.getElementById('shadow2');
 
 const boost = document.getElementById('boost');
 const boost_display = document.getElementById('boost-cost');
@@ -66,6 +75,7 @@ help_open.addEventListener('click', function() {
 make.addEventListener('click', function() {
     money += income;
 
+    if (powerup == 'bonus')
     total_bonus += bonus_clicks;
     let x = total_bonus;
     total_bonus = (Math.round(x * 10) / 10);
@@ -103,6 +113,24 @@ upgrades_tab.addEventListener('click', function() {
     money_document.style.display = 'none';
     upgrades_tab.className = 'tab selected';
     money_tab.className = 'tab';
+});
+
+// auto page
+auto_tab.addEventListener('click', function() {
+    auto_shadow.style.display = 'none';
+    bonus_shadow.style.display = 'block';
+    bonus_tab.className = 'tab';
+    auto_tab.className = 'tab selected';
+    powerup = 'auto';
+});
+
+// bonus page
+bonus_tab.addEventListener('click', function() {
+    bonus_shadow.style.display = 'none';
+    auto_shadow.style.display = 'block';
+    bonus_tab.className = 'tab selected';
+    auto_tab.className = 'tab';
+    powerup = 'bonus';
 });
 
 // purchase income boost

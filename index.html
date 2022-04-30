@@ -35,32 +35,55 @@
             <h1>Make Bank</h1>
         </div>
         <div id="tabs-wrapper">
-            <button id="money_tab" class="tab selected">Money</button>
-            <button id="upgrades_tab" class="tab">Upgrades</button>
+            <button id="money-tab" class="tab selected">Money</button>
+            <button id="upgrades-tab" class="tab">Upgrades</button>
         </div>
+        <!-- Game tab -->
         <div id="game-wrapper">
+            <!-- Income display -->
             <div id="income-wrapper">
                 <p id="income">Income $<span id="income">1</span></p>
             </div>
+            <!-- Total cash -->
             <div id="total-wrapper">
                 <p id="total-display"><span id="total" class="green bold">$0</span></p>
             </div>
+            <!-- Snarky comments -->
             <div id="remark-wrapper">
                 <i id="witty-remark">You broke.</i>
             </div>
+            <!-- Item purchase -->
             <div id="item-wrapper">
                 <i id="item-desc">Item thingy majig</i>
                 <button id="item">Buy</button>
             </div>
+            <!-- CLICK! -->
             <div id="click-wrapper">
                 <button id="click"><span class="green bold">$</span></button>
             </div>
-            <div id="bonus-wrapper">
-                <p>Bonus Clicks</p>
-                <span><span id="bonus">0</span> (+<span id="bonus-clicks">0</span> / click)</span>
-                <button id="use-bonus">Use</button>
+            <!-- Bonus/Auto tabs -->
+            <div id="game-tabs-wrapper">
+                <button id="bonus-tab" class="tab selected">Bonus</button>
+                <button id="auto-tab" class="tab">Auto</button>
+            </div>
+            <!-- Bonus area -->
+            <div id="powerup-wrapper">
+                <div class="powerup-shadow" id="shadow1"></div>
+                <div class="powerup-shadow" id="shadow2"></div>
+                <div class="powerup-wrapper" id="bonus-wrapper">
+                    <p>Bonus Clicks</p>
+                    <b><span id="bonus">0</span></b>
+                    <span>(+<span id="bonus-clicks">0</span> / click)</span>
+                    <button id="use-bonus">Use</button>
+                </div>
+                <!-- Auto area -->
+                <div class="powerup-wrapper" id="auto-wrapper">
+                    <p>Auto Click</p>
+                    <span>+<span id="auto-clicks">0</span> / sec</span>
+                </div>
             </div>
         </div>
+        <!-- Upgrades tab -->
         <div id="upgrades-wrapper">
             <div id="boost-wrapper">
                 <button id="boost">Income Boost - $<span id="boost-cost">100000</span></button>
