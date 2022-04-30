@@ -29,6 +29,10 @@ var purchase_list = [
 // HTML DOM declaration
 const make = document.getElementById('click');
 
+const help_close = document.getElementById('help-close');
+const help = document.getElementById('help-wrapper');
+const help_open = document.getElementById('help-button');
+
 const money_tab = document.getElementById('money_tab');
 const money_document = document.getElementById('game-wrapper');
 const upgrades_tab = document.getElementById('upgrades_tab');
@@ -49,6 +53,14 @@ const income_display = document.getElementById('income');
 const item_description = document.getElementById('item-desc');
 const item_section = document.getElementById('item-wrapper');
 const item_purchase = document.getElementById('item');
+
+// help section
+help_close.addEventListener('click', function() {
+    help.style.display = 'none';
+});
+help_open.addEventListener('click', function() {
+    help.style.display = 'block';
+});
 
 // add money
 make.addEventListener('click', function() {
