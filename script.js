@@ -2,11 +2,14 @@
 var money = 0;
 var income = 1;
 
-var boost_cost = 10000;
+var boost_cost = 1000;
 
 var bonus_cost = 100;
 var bonus_clicks = 0;
 var total_bonus = 0;
+
+var auto_cost = 500;
+var auto_clicks = 0;
 
 var powerup = 'bonus';
 
@@ -51,10 +54,14 @@ const boost = document.getElementById('boost');
 const boost_display = document.getElementById('boost-cost');
 const bonus = document.getElementById('bonus-purchase');
 const bonus_display = document.getElementById('bonus-cost');
+const auto = document.getElementById('auto-purchase');
+const auto_display = document.getElementById('auto-cost');
 
 const game_bonus_add = document.getElementById('bonus-clicks');
 const game_bonus = document.getElementById('bonus');
 const use = document.getElementById('use-bonus');
+
+const auto_add = document.getElementById('auto-clicks');
 
 const total = document.getElementById('total');
 const income_display = document.getElementById('income');
@@ -75,11 +82,11 @@ help_open.addEventListener('click', function() {
 make.addEventListener('click', function() {
     money += income;
 
-    if (powerup == 'bonus')
-    total_bonus += bonus_clicks;
-    let x = total_bonus;
-    total_bonus = (Math.round(x * 10) / 10);
-    game_bonus.innerHTML = total_bonus.toFixed(1);
+    if (powerup == 'bonus') {
+        total_bonus += bonus_clicks;
+        let x = total_bonus;
+        total_bonus = (Math.round(x * 10) / 10);
+    }
 });
 
 use.addEventListener('click', function() {
@@ -147,6 +154,14 @@ bonus.addEventListener('click', function() {
     bonus_clicks += 0.1;
 });
 
+// purchase auto clicks
+auto.addEventListener('click', function() {
+    money -= auto_cost;
+    auto_cost *= 3;
+    auto_clicks += 5;
+    auto_add.innerHTML = auto_clicks.toFixed(1);
+});
+
 // game tick
 var tick = setInterval(function() {
     if (money < boost_cost) {
@@ -159,8 +174,16 @@ var tick = setInterval(function() {
     } else {
         bonus.disabled = false;
     }
+    if (money < auto_cost) {
+        auto.disabled = true;
+    } else {
+        auto.disabled = false;
+    }
 
     game_bonus_add.innerHTML = bonus_clicks.toFixed(1);
+    if (powerup == 'auto') {
+        money += auto_clicks / 60;
+    }
     total.innerHTML = '$' + Math.floor(money);
     income_display.innerHTML = 'Income $' + Math.floor(income);
 
@@ -177,4 +200,7 @@ var tick = setInterval(function() {
 
     boost_display.innerHTML = boost_cost;
     bonus_display.innerHTML = bonus_cost;
+    auto_display.innerHTML = auto_cost;
+
+    game_bonus.innerHTML = total_bonus.toFixed(1);
 }, 1000/60);
