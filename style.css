@@ -158,9 +158,9 @@ button.tab:hover {
     align-items: center;
 }
 #remark-wrapper {
-    margin:10px;
+    margin:20px;
     font-size: 0.75rem;
-    height:50px;
+    text-align: center;
 }
 #click {
     border-radius: 10px;

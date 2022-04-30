@@ -31,8 +31,25 @@ var purchase_list = [
     {object:'Earth', price:5000000000000000, income:200000}
 ];
 
+var comment_list = [
+    {comment:"You're broke", time:0},
+    {comment:"You have something to your name!", time:1},
+    {comment:"You can shop at Walmart!", time:10},
+    {comment:"You have a decent amount of pocket change.", time:100},
+    {comment:"You are above the poverty line!", time:1000},
+    {comment:"Look at all the stuff you can buy!", time:5000},
+    {comment:"Do you have auto click yet?", time:15000},
+    {comment:"Look at that chunk of change!", time:50000},
+    {comment:"I'm bored. How 'bout you?", time:100000},
+    {comment:"The president wants your job.", time:250000},
+    {comment:"Ever considered big oil?", time:500000},
+    {comment:"You're a millionaire!", time:1000000}
+];
+
 // HTML DOM declaration
 const make = document.getElementById('click');
+
+const comment = document.getElementById('witty-remark');
 
 const help_close = document.getElementById('help-close');
 const help = document.getElementById('help-wrapper');
@@ -187,17 +204,20 @@ var tick = setInterval(function() {
     total.innerHTML = '$' + Math.floor(money);
     income_display.innerHTML = 'Income $' + Math.floor(income);
 
-    if (money < purchase_list[0].price) {
-        item_section.style.display = 'none';
+    for (var i = 0;i < purchase_list.length;i++) {
+        if (money >= purchase_list[i].price) {
+            item_description.innerHTML = 'You can afford a ' + purchase_list[i].object + ' ($' + purchase_list[i].price + ')';
+            item_section.style.display = 'flex';
+        } else {
+            item_section.style.display = 'none';
+        }
     }
 
-    if (money >= purchase_list[0].price) {
-        item_description.innerHTML = 'You can afford a ' + purchase_list[0].object + ' ($' + purchase_list[0].price + ')';
-        item_section.style.display = 'flex';
-    } else {
-        item_section.style.display = 'none';
+    for (var i = 0;i < comment_list.length;i++) {
+        if (money >= comment_list[i].time && money < comment_list[i+1].time) {
+            comment.innerHTML = comment_list[i].comment;
+        }
     }
-
     boost_display.innerHTML = boost_cost;
     bonus_display.innerHTML = bonus_cost;
     auto_display.innerHTML = auto_cost;
