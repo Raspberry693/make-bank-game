@@ -49,7 +49,7 @@ span.bold {
 }
 #help-wrapper {
     width:210px;
-    height:525px;
+    height:100%;
     position: absolute;
     background-color: green;
     top:0;
