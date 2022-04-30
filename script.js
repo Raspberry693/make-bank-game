@@ -11,6 +11,8 @@ var total_bonus = 0;
 var auto_cost = 500;
 var auto_clicks = 0;
 
+var item_number = 0;
+
 var powerup = 'bonus';
 
 var purchase_list = [
@@ -25,6 +27,7 @@ var purchase_list = [
     {object:'Apartment in Los Angeles', price:300000, income:12},
     {object:'House', price:800000, income:20},
     {object:'Mansion', price:2000000, income:30},
+    {object:'Falcon 9 Rocket', price:100000000, income:50},
     {object:'Trump Tower', price:300000000, income:50},
     {object:'Bank of America', price:449100000000, income:10},
     {object:'United States', price:225000000000000, income:200},
@@ -113,14 +116,13 @@ use.addEventListener('click', function() {
 
 // purchase item
 item_purchase.addEventListener('click', function() {
-    income += purchase_list[0].income;
+    income += purchase_list[item_number].income;
     income_display.innerHTML = 'Income $' + income;
 
-    money -= purchase_list[0].price;
+    money -= purchase_list[item_number].price;
 
-    purchase_list.shift();
-
-    item_description.innerHTML = 'You can afford a ' + purchase_list[0].object + ' ($' + purchase_list[0].price + ')';
+    console.log(item_number);
+    purchase_list.splice(item_number, 1);
 });
 
 // money page
@@ -204,10 +206,12 @@ var tick = setInterval(function() {
     total.innerHTML = '$' + Math.floor(money);
     income_display.innerHTML = 'Income $' + Math.floor(income);
 
-    for (var i = 0;i < purchase_list.length;i++) {
-        if (money >= purchase_list[i].price) {
-            item_description.innerHTML = 'You can afford a ' + purchase_list[i].object + ' ($' + purchase_list[i].price + ')';
+    for (var x = 0;x < purchase_list.length;x++) {
+        if (money >= purchase_list[x].price && money < purchase_list[x+1].price) {
+            item_description.innerHTML = 'You can afford a ' + purchase_list[x].object + ' ($' + purchase_list[x].price + ')';
             item_section.style.display = 'flex';
+            item_number = x;
+            break;
         } else {
             item_section.style.display = 'none';
         }
@@ -224,3 +228,7 @@ var tick = setInterval(function() {
 
     game_bonus.innerHTML = total_bonus.toFixed(1);
 }, 1000/60);
+
+var save_tick = setInterval(function() {
+
+}, 5000);

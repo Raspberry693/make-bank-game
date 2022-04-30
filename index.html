@@ -9,10 +9,10 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-        <script src="https://kit.fontawesome.com/e81682f7de.js" crossorigin="anonymous"></script>
         
         <script src="script.js" defer></script>
+        
+        <link rel="stylesheet" href="/assets/fontawesome/css/all.css">
     </head>
     <body>
         <div id="version">
@@ -20,21 +20,6 @@
         </div>
         <div id="help-button">
             <i class="fa-regular fa-circle-question"></i>
-        </div>
-        <div id="help-wrapper">
-            <div id="help-close">
-                <i class="fa-solid fa-xmark"></i>
-            </div>
-            <h1>Help</h1>
-            <b>Make Bank?</b>
-            <p>Make Bank is a remake of the popular game, <a target="_blank" href="https://chrome.google.com/webstore/detail/make-money/jilechdbojlnkjfimmbijgcfmblddejk?hl=en">Make Money</a>.</p>
-            <b>How To Play</b>
-            <p>Literally just smack the button with the <i>$</i> on it.</p>
-            <b>Upgrades</b>
-            <p>Click the upgrades tab to get to the shop, then buy upgrades!</p>
-            <p>The "Income Boost" boosts your income by 10%</p>
-            <p>The "Bonus Clicks" increases the bonus clicks powerup by 0.1. Each time you click, you get a certain amount of bonus clicks. When used, converts to money!</p>
-            <p>The "Auto Click" increases the auto powerup by 2.5x. Every second, you get a set amount of times your current income.</p>
         </div>
         <div id="header-wrapper">
             <h1>Make Bank</h1>
@@ -67,24 +52,41 @@
                 <button id="click"><span class="green bold">$</span></button>
             </div>
             <!-- Bonus/Auto tabs -->
-            <div id="game-tabs-wrapper">
-                <button id="bonus-tab" class="tab selected">Bonus</button>
-                <button id="auto-tab" class="tab">Auto</button>
-            </div>
-            <!-- Bonus area -->
-            <div id="powerup-wrapper">
-                <div class="powerup-shadow" id="shadow1"></div>
-                <div class="powerup-shadow" id="shadow2"></div>
-                <div class="powerup-wrapper" id="bonus-wrapper">
-                    <b><span id="bonus">0</span></b>
-                    <span>(+<span id="bonus-clicks">0</span> / click)</span>
-                    <button id="use-bonus">Use</button>
+            <div id="powerup-section-wrapper">
+                <div id="game-tabs-wrapper">
+                    <button id="bonus-tab" class="tab selected">Bonus</button>
+                    <button id="auto-tab" class="tab">Auto</button>
                 </div>
-                <!-- Auto area -->
-                <div class="powerup-wrapper" id="auto-wrapper">
-                    <span>+<span id="auto-clicks">0.0</span>x / sec</span>
+                <!-- Bonus area -->
+                <div id="powerup-wrapper">
+                    <div class="powerup-shadow" id="shadow1"></div>
+                    <div class="powerup-shadow" id="shadow2"></div>
+                    <div class="powerup-wrapper" id="bonus-wrapper">
+                        <b><span id="bonus">0</span></b>
+                        <span>(+<span id="bonus-clicks">0</span> / click)</span>
+                        <button id="use-bonus">Use</button>
+                    </div>
+                    <!-- Auto area -->
+                    <div class="powerup-wrapper" id="auto-wrapper">
+                        <span>+<span id="auto-clicks">0.0</span>x / sec</span>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div id="help-wrapper">
+            <div id="help-close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <h1>Help</h1>
+            <b>Make Bank?</b>
+            <p>Make Bank is a remake of the popular game, <a target="_blank" href="https://chrome.google.com/webstore/detail/make-money/jilechdbojlnkjfimmbijgcfmblddejk?hl=en">Make Money</a>.</p>
+            <b>How To Play</b>
+            <p>Literally just smack the button with the <i>$</i> on it.</p>
+            <b>Upgrades</b>
+            <p>Click the upgrades tab to get to the shop, then buy upgrades!</p>
+            <p>The "Income Boost" boosts your income by 10%</p>
+            <p>The "Bonus Clicks" increases the bonus clicks powerup by 0.1. Each time you click, you get a certain amount of bonus clicks. When used, converts to money!</p>
+            <p>The "Auto Click" increases the auto powerup by 2.5x. Every second, you get a set amount of times your current income.</p>
         </div>
         <!-- Upgrades tab -->
         <div id="upgrades-wrapper">

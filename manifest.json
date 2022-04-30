@@ -1,9 +1,10 @@
 {
+    "manifest_version":3,
     "name":"Clicker Game",
     "description":"A facelift of 'Make Money'",
     "version":"0.2",
-    "actions": {
-        "popup":"index.html"
+    "action": {
+        "default_popup":"index.html"
     },
     "permissions": ["storage"]
 }
