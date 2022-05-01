@@ -1,4 +1,6 @@
 // var declarations
+var save_list = [];
+
 var money = 0;
 var income = 1;
 
@@ -14,6 +16,23 @@ var auto_clicks = 0;
 var item_number = 0;
 
 var powerup = 'bonus';
+
+chrome.storage.sync.get(['save'], function(result) {
+    console.info('Save data read');
+    console.info(result.save);
+    if (result.save.length != 0) {
+        console.log(result.save.money);
+        money = result.save[3];
+        income = result.save[4];
+        boost_cost = result.save[5];
+        bonus_cost = result.save[6];
+        bonus_clicks = result.save[7];
+        total_bonus = result.save[2];
+        auto_cost = result.save[1];
+        auto_clicks = result.save[0];
+    }
+    console.log(result.save.length != 0);
+});
 
 var purchase_list = [
     {object:'Water Bottle', price:20, income:1},
@@ -227,8 +246,14 @@ var tick = setInterval(function() {
     auto_display.innerHTML = auto_cost;
 
     game_bonus.innerHTML = total_bonus.toFixed(1);
-}, 1000/60);
+}, 1000/30);
 
+var d;
 var save_tick = setInterval(function() {
-
+    save_list = [auto_clicks,auto_cost,total_bonus,money,income,boost_cost,bonus_cost,bonus_clicks]
+    chrome.storage.sync.set({save: save_list}, function() {
+        d = new Date();
+        console.info('Game saved at ' + d);
+        console.info(save_list);
+    });
 }, 5000);
