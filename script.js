@@ -15,16 +15,21 @@ var auto_clicks = 0;
 
 var item_number = 0;
 
+var prestige_points = 0;
+var asset_count = 0;
+
 var powerup = 'bonus';
 
 var purchase_list = [
-    {object:'Water Bottle', price:20, income:1},
-    {object:'Backpack', price:100, income:1},
-    {object:'Cart', price:200, income:1},
+    {object:'Water Bottle', price:5, income:1},
+    {object:'Backpack', price:40, income:1},
+    {object:'Cart', price:50, income:1},
+    {object:'Mini Scooter', price:200, income:2},
     {object:'Smartphone', price:500, income:2},
+    {object:'Minecraft', price:30, income:2},
     {object:'Laptop', price:2000, income:3},
-    {object:'Motorcycle', price:3000, income:3},
-    {object:'Car', price:10000, income:5},
+    {object:'Motorcycle', price:5000, income:3},
+    {object:'Car', price:15000, income:5},
     {object:'Luxury Car', price:80000, income:10},
     {object:'Apartment in Los Angeles', price:300000, income:12},
     {object:'House', price:800000, income:20},
@@ -36,6 +41,7 @@ var purchase_list = [
     {object:'Earth', price:5000000000000000, income:200000}
 ];
 
+// Restore save data
 chrome.storage.sync.get(['save'], function(result) {
     console.info('Save data read');
     console.info(result.save);
@@ -50,9 +56,19 @@ chrome.storage.sync.get(['save'], function(result) {
         auto_cost = result.save[1];
         auto_clicks = result.save[0];
         purchase_list = result.save[8];
+        prestige_points = result.save[9];
+        asset_count = result.save[10];
     }
     console.log(result.save.length != 0);
 });
+
+// version transition backup
+if (prestige_points == null) {
+    prestige_points = 0;
+}
+if (asset_count == null) {
+    asset_count = 0;
+}
 
 var comment_list = [
     {comment:"You're broke", time:0},
@@ -110,12 +126,57 @@ const item_description = document.getElementById('item-desc');
 const item_section = document.getElementById('item-wrapper');
 const item_purchase = document.getElementById('item');
 
+const prestige = document.getElementById('prestige-wrapper');
+
 // help section
 help_close.addEventListener('click', function() {
     help.style.display = 'none';
 });
 help_open.addEventListener('click', function() {
     help.style.display = 'block';
+});
+
+// prestige
+prestige.addEventListener('click', function() {
+    prestige_points += asset_count-7;
+    income = 1*(prestige_points*0.5+1);
+
+    money = 0;
+
+    boost_cost = 1000;
+
+    bonus_cost = 100;
+    bonus_clicks = 0;
+    total_bonus = 0;
+
+    auto_cost = 500;
+    auto_clicks = 0;
+
+    item_number = 0;
+    asset_count = 0;
+
+    powerup = 'bonus';
+
+    purchase_list = [
+        {object:'Water Bottle', price:5, income:1},
+        {object:'Backpack', price:40, income:1},
+        {object:'Cart', price:50, income:1},
+        {object:'Mini Scooter', price:200, income:2},
+        {object:'Smartphone', price:500, income:2},
+        {object:'Minecraft', price:30, income:2},
+        {object:'Laptop', price:2000, income:3},
+        {object:'Motorcycle', price:5000, income:3},
+        {object:'Car', price:15000, income:5},
+        {object:'Luxury Car', price:80000, income:10},
+        {object:'Apartment in Los Angeles', price:300000, income:12},
+        {object:'House', price:800000, income:20},
+        {object:'Mansion', price:2000000, income:30},
+        {object:'Falcon 9 Rocket', price:100000000, income:50},
+        {object:'Trump Tower', price:300000000, income:50},
+        {object:'Bank of America', price:449100000000, income:10},
+        {object:'United States', price:225000000000000, income:200},
+        {object:'Earth', price:5000000000000000, income:200000}
+    ];
 });
 
 // add money
@@ -143,6 +204,8 @@ item_purchase.addEventListener('click', function() {
 
     console.log(item_number);
     purchase_list.splice(item_number, 1);
+
+    asset_count += 1;
 });
 
 // money page
@@ -203,6 +266,12 @@ auto.addEventListener('click', function() {
 
 // game tick
 var tick = setInterval(function() {
+    if (asset_count-7<1) {
+        prestige.disabled = true;
+    } else {
+        prestige.disabled = false;
+    }
+
     if (money < boost_cost) {
         boost.disabled = true;
     } else {
@@ -252,7 +321,7 @@ var tick = setInterval(function() {
 
 var d;
 var save_tick = setInterval(function() {
-    save_list = [auto_clicks,auto_cost,total_bonus,money,income,boost_cost,bonus_cost,bonus_clicks,purchase_list]
+    save_list = [auto_clicks,auto_cost,total_bonus,money,income,boost_cost,bonus_cost,bonus_clicks,purchase_list,prestige_points,asset_count]
     chrome.storage.sync.set({save: save_list}, function() {
         d = new Date();
         console.info('Game saved at ' + d);

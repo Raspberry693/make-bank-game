@@ -296,6 +296,9 @@ button.tab:hover {
     justify-content: center;
     background-color: rgb(238, 238, 238);
     transition: 0.3s;
+    border:none;
+    height:30px;
+    align-items: center;
 }
 #prestige-wrapper:hover {
     cursor:pointer;
