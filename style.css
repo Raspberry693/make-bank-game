@@ -237,7 +237,7 @@ button.tab:hover {
 #powerup-section-wrapper {
     width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: 23px;
 }
 #powerup-wrapper {
     display: flex;
@@ -285,4 +285,19 @@ button.tab:hover {
 }
 #auto-wrapper > p {
     margin:0px;
+}
+
+/* Prestige Styles */
+#prestige-wrapper {
+    position:absolute;
+    bottom:0px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(238, 238, 238);
+    transition: 0.3s;
+}
+#prestige-wrapper:hover {
+    cursor:pointer;
+    background-color: rgb(228, 228, 228);
 }
