@@ -247,6 +247,7 @@ var tick = setInterval(function() {
     auto_display.innerHTML = auto_cost;
 
     game_bonus.innerHTML = total_bonus.toFixed(1);
+    auto_add.innerHTML = auto_clicks.toFixed(1);
 }, 1000/30);
 
 var d;
