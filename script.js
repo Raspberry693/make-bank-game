@@ -65,6 +65,27 @@ chrome.storage.sync.get(['save'], function(result) {
 // version transition backup
 if (prestige_points == null) {
     prestige_points = 0;
+    income = 1;
+    purchase_list = [
+        {object:'Water Bottle', price:5, income:1},
+        {object:'Backpack', price:40, income:1},
+        {object:'Cart', price:50, income:1},
+        {object:'Mini Scooter', price:200, income:2},
+        {object:'Smartphone', price:500, income:2},
+        {object:'Minecraft', price:30, income:2},
+        {object:'Laptop', price:2000, income:3},
+        {object:'Motorcycle', price:5000, income:3},
+        {object:'Car', price:15000, income:5},
+        {object:'Luxury Car', price:80000, income:10},
+        {object:'Apartment in Los Angeles', price:300000, income:12},
+        {object:'House', price:800000, income:20},
+        {object:'Mansion', price:2000000, income:30},
+        {object:'Falcon 9 Rocket', price:100000000, income:50},
+        {object:'Trump Tower', price:300000000, income:50},
+        {object:'Bank of America', price:449100000000, income:10},
+        {object:'United States', price:225000000000000, income:200},
+        {object:'Earth', price:5000000000000000, income:200000}
+    ];
 }
 if (asset_count == null) {
     asset_count = 0;
@@ -138,7 +159,7 @@ help_open.addEventListener('click', function() {
 
 // prestige
 prestige.addEventListener('click', function() {
-    prestige_points += asset_count-7;
+    prestige_points += asset_count-10;
     income = 1*(prestige_points*0.5+1);
 
     money = 0;
@@ -154,8 +175,6 @@ prestige.addEventListener('click', function() {
 
     item_number = 0;
     asset_count = 0;
-
-    powerup = 'bonus';
 
     purchase_list = [
         {object:'Water Bottle', price:5, income:1},
@@ -197,7 +216,7 @@ use.addEventListener('click', function() {
 
 // purchase item
 item_purchase.addEventListener('click', function() {
-    income += purchase_list[item_number].income;
+    income += purchase_list[item_number].income*(prestige_points*0.5+1);
     income_display.innerHTML = 'Income $' + income;
 
     money -= purchase_list[item_number].price;
@@ -246,7 +265,7 @@ bonus_tab.addEventListener('click', function() {
 boost.addEventListener('click', function() {
     money -= boost_cost;
     boost_cost *= 2;
-    income *= 1.1;
+    income *= 1.1*(prestige_points*0.5+1);
 });
 
 // purchase bonus clicks
@@ -266,7 +285,7 @@ auto.addEventListener('click', function() {
 
 // game tick
 var tick = setInterval(function() {
-    if (asset_count-7<1) {
+    if (asset_count-10<1) {
         prestige.disabled = true;
     } else {
         prestige.disabled = false;
