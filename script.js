@@ -265,7 +265,7 @@ bonus_tab.addEventListener('click', function() {
 boost.addEventListener('click', function() {
     money -= boost_cost;
     boost_cost *= 2;
-    income *= 1.1*(prestige_points*0.5+1);
+    income *= 1.1;
 });
 
 // purchase bonus clicks
